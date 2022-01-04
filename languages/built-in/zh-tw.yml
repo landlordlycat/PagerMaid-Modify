@@ -454,7 +454,7 @@ eval_des: 執行 Python 指令
 eval_parameters: <指令>
 eval_channel: Error！不能在頻道執行指令。
 eval_success: 執行 Python 指令
-eval_need_dev: '**請注意：此命令可以直接操作您的賬戶** 此命令僅適用於開發者，如果您知道您在做什麼的話，請手動在 Redis 數據庫配置 dev 項為任意值。'
+eval_need_dev: '**请注意：此命令可以直接操作您的账户** 此命令仅适用于开发者，如果您知道您在做什么的话，请手动在 Redis 数据库配置 dev 项为任意值或者在 data 文件夹下创建 dev 文件。'
 ## restart
 restart_des: 重新啟動
 restart_processing: 嘗試重新啟動
