@@ -167,6 +167,7 @@ translate_des: Translate the target message into the specified language through 
 translate_parameters: <text>
 translate_processing: The translation is being generated...
 translate_ValueError: Something went wrong ~ The target language could not be found, please correct the error in the configuration file.
+translate_ImportError: 出错了呜呜呜 ~ 请先安装 translators 模块。
 translate_hits: text translation
 translate_original_lang: source language
 translate_tg_limit_uploading_file: The output exceeds the TG limit, and it is trying to upload a file.
@@ -457,7 +458,8 @@ eval_success: execute Python commands remotely
 eval_need_dev: '**请注意：此命令可以直接操作您的账户** 此命令仅适用于开发者，如果您知道您在做什么的话，请手动在 Redis 数据库配置 dev 项为任意值或者在 data 文件夹下创建 dev 文件。'
 ## restart
 restart_des: Restart PagerMaid-Modify
-restart_processing: Try to restart PagerMaid-Modify.
+restart_processing: 尝试重启 PagerMaid-Modify...
+restart_complete: PagerMaid-Modify 重启完成。
 restart_log: PagerMaid-Modify restarts.
 ## trace
 trace_des: Trace the redirection of the URL.
