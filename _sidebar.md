@@ -7,3 +7,5 @@
     * [Centos 7](centos7)
     * [Wsl](wsl)
     * [Archlinux](archlinux)
+* PGM 机器转移
+    * [Ubuntu 20.04](transfer-ubuntu20)
