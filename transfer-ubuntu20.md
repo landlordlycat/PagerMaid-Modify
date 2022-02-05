@@ -4,8 +4,6 @@
 
 本次操作的机器都是 `Oracle` 的机器
 
-**请根据自身机器和环境自行摸索，此教程顾及不了全部机器，只能作为参考。**
-
 # 环境
 
 ## 需要转移的机器
@@ -66,13 +64,13 @@ Memory: 384MiB / 23996MiB
 
 首先，先给目标机器设置一下 `PagerMaid` 环境
 \
-我这里根据[安装软件包](https://github.com/Xtao-Labs/PagerMaid-Modify/wiki/Ubuntu-16.04-%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85)的教程把需要的软件包安装一下。
+我这里根据[安装软件包](https://xtaolabs.com/#/ubuntu20?id=%e5%ae%89%e8%a3%85%e8%bd%af%e4%bb%b6%e5%8c%85)的教程把需要的软件包安装一下。
 \
 至于安装什么软件包就看你需要什么功能了，我是全部安装的。
 
 建议使用 `Ubuntu OS`, 因为可以缩短安装时间（毕竟全部都有现成的软件包）
 
-个人建议别做死尝试 `Oracle Linux`，会把时间浪费在除错上面
+?> 个人建议别做死尝试 `Oracle Linux`，会把时间浪费在除错上面
 
 ## 依赖包架构不同
 
@@ -199,7 +197,7 @@ sam@pagermaid:/var/lib/pagermaid# source venv/bin/activate
 
 </details>
 
-然后按照正常的[安装依赖包](https://github.com/Xtao-Labs/PagerMaid-Modify/wiki/Ubuntu-16.04-%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85)流程即可。
+然后按照正常的[安装依赖包](https://xtaolabs.com/#/ubuntu20?id=%e5%ae%89%e8%a3%85%e4%be%9d%e8%b5%96%e5%8c%85)流程即可。
 
 在你准备安装之前，你肯定会遇到下面的问题，请先把下面的问题看完再安装。
 
@@ -378,23 +376,13 @@ WARNING: Discarding https://files.pythonhosted.org/packages/84/74/4a97db45381316
 
 指令（[来源参考](https://stackoverflow.com/a/5178444)）：
 
-`Ubuntu`:
-
 ```sh
 sudo apt-get install libxml2-dev libxslt-dev python-dev -y
-```
-
-`Oracle Linux`:
-
-```sh
-sudo yum install libxslt-devel libxml2-devel -y
 ```
 
 ### matplotlib 安装问题
 
 大部分都是因为没安装足够或软件包版本太低，尝试以下指令
-
-`Ubuntu`:
 
 ```sh
 sudo apt install libxml2-dev libxslt-dev python-dev gcc g++ make libjpeg8-dev zlib1g-dev -y
@@ -406,7 +394,7 @@ sudo apt install libxml2-dev libxslt-dev python-dev gcc g++ make libjpeg8-dev zl
 
 ## 备份并关闭
 
-在[登录账号](https://github.com/Xtao-Labs/PagerMaid-Modify/wiki/Ubuntu-16.04-%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3#%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7)之前，我们先备份一下我们旧的 `PagerMaid` 文件
+在[登录账号](https://xtaolabs.com/#/ubuntu20?id=%e7%99%bb%e5%bd%95%e8%b4%a6%e5%8f%b7)之前，我们先备份一下我们旧的 `PagerMaid` 文件
 
 ### 备份
 
@@ -433,11 +421,11 @@ sudo systemctl disable pagermaid
 
 ### 设置账号
 
-首先，按照正常的[登录账号](https://github.com/Xtao-Labs/PagerMaid-Modify/wiki/Ubuntu-16.04-%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3#%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7)流程登录一次。
+首先，按照正常的[登录账号](https://xtaolabs.com/#/ubuntu20?id=%e7%99%bb%e5%bd%95%e8%b4%a6%e5%8f%b7)流程登录一次。
 \
-然后，也按照[进程守护](https://github.com/Xtao-Labs/PagerMaid-Modify/wiki/Ubuntu-16.04-%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3#%E8%BF%9B%E7%A8%8B%E5%AE%88%E6%8A%A4)让 `PagerMaid` 可以自启动。
+然后，也按照[进程守护](https://xtaolabs.com/#/ubuntu20?id=%e8%bf%9b%e7%a8%8b%e5%ae%88%e6%8a%a4)让 `PagerMaid` 可以自启动。
 
-**注意：**`进程守护`中的 `/usr/bin/python3` 记得改成 `/var/lib/pagermaid/venv/bin/python3`
+!> `进程守护`中的 `/usr/bin/python3` 必须改成 `/var/lib/pagermaid/venv/bin/python3`
 
 ### 恢复备份
 
