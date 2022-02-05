@@ -1,8 +1,4 @@
-# 前言
-
-最近刚好弄到一台新加坡的机器，打算趁这个机会写一篇文章记录下转移过程
-
-本次操作的机器都是 `Oracle` 的机器
+?> 本次操作的机器都是来自 `Oracle`
 
 # 环境
 
@@ -26,6 +22,7 @@ CPU: AMD EPYC 7551 (2) @ 1.996GHz
 ```
 | key | value |
 | --- | ----- |
+| 机器位置 | 日本 |
 | Python 版本 | `3.7.10` |
 | Telethon 版本 | `1.24.0` |
 | Redis 数据库 | `有` |
@@ -62,15 +59,11 @@ Memory: 384MiB / 23996MiB
 
 # 设置环境
 
-首先，先给目标机器设置一下 `PagerMaid` 环境
+首先，先给目标机器设置 `PagerMaid` 环境
 \
-我这里根据[安装软件包](https://xtaolabs.com/#/ubuntu20?id=%e5%ae%89%e8%a3%85%e8%bd%af%e4%bb%b6%e5%8c%85)的教程把需要的软件包安装一下。
-\
-至于安装什么软件包就看你需要什么功能了，我是全部安装的。
+根据[安装软件包](https://xtaolabs.com/#/ubuntu20?id=%e5%ae%89%e8%a3%85%e8%bd%af%e4%bb%b6%e5%8c%85)的教程把需要的软件包安装一下。
 
-建议使用 `Ubuntu OS`, 因为可以缩短安装时间（毕竟全部都有现成的软件包）
-
-?> 个人建议别做死尝试 `Oracle Linux`，会把时间浪费在除错上面
+?> 请按需安装软件包
 
 ## 依赖包架构不同
 
@@ -90,19 +83,21 @@ E: Package 'imagemagick' has no installation candidate
 
 解决方法也很简单，就是找个相同架构的就行了
 
-其它依赖包也是这样处理，不过我建议要是没找到可信任的源就自己编译好了。
+其它依赖包也是这样处理，建议要是没找到可信任的源就自己编译好了。
+
+?> 如果实在不行（比如已经处理了一个小时），建议放弃。
 
 ## 创建 PyPy 环境
 
 - `PyPy` 的[安装教程（英文）](https://doc.pypy.org/en/latest/install.html)
 
-`PyPy` 最新版本可以在[官网](https://www.pypy.org/download.html)取得，记得按照自己机器的型号下载并安装
+`PyPy` 最新版本可以在[官网](https://www.pypy.org/download.html)取得，请按照自己机器的型号下载并安装
 \
-我这里安装的是 `pypy3.8`，架构 `aarch64`，请替换成属于自己机器的架构
+这里安装的是 `pypy3.8`，架构 `aarch64`，请替换成属于自己机器架构
 \
-我个人习惯把二进制文件放在 `/usr/local`
+这里示范的路径为 `/usr/local`
 
-我执行的指令：
+示范指令：
 
 ```sh
 cd /tmp
@@ -177,7 +172,7 @@ Successfully installed pip-22.0.3 wheel-0.37.1
 
 为了让 `PagerMaid-Modify` 不污染 `PyPy` 的环境，我们得创建一个虚拟环境，专门给 `PGM`。
 
-我执行的指令：
+指令：
 
 ```sh
 cd /var/lib/pagermaid/
@@ -199,11 +194,11 @@ sam@pagermaid:/var/lib/pagermaid# source venv/bin/activate
 
 然后按照正常的[安装依赖包](https://xtaolabs.com/#/ubuntu20?id=%e5%ae%89%e8%a3%85%e4%be%9d%e8%b5%96%e5%8c%85)流程即可。
 
-在你准备安装之前，你肯定会遇到下面的问题，请先把下面的问题看完再安装。
+在你准备安装之前，你大概率会遇到以下问题，请先把下面的问题看完再安装。
 
 ## 安装依赖包遇到 lxml 报错了
 
-在执行 `pip3 install -r requirements.txt` 的时候会遇到以下情况
+在执行 `pip3 install -r requirements.txt` 时会遇到以下情况
 
 <details>
 <summary>执行记录</summary>
@@ -372,12 +367,12 @@ WARNING: Discarding https://files.pythonhosted.org/packages/84/74/4a97db45381316
 
 `Error: Please make sure the libxml2 and libxslt development packages are installed.`
 
-也就是说我们没安装 `libxml2` 和 `libxslt`，那么先安装就可以了吧？
+也就是说我们没安装 `libxml2` 和 `libxslt`，那么按提示安装即可。
 
 指令（[来源参考](https://stackoverflow.com/a/5178444)）：
 
 ```sh
-sudo apt-get install libxml2-dev libxslt-dev python-dev -y
+sudo apt install libxml2-dev libxslt-dev python-dev -y
 ```
 
 ### matplotlib 安装问题
@@ -394,9 +389,9 @@ sudo apt install libxml2-dev libxslt-dev python-dev gcc g++ make libjpeg8-dev zl
 
 ## 备份并关闭
 
-在[登录账号](https://xtaolabs.com/#/ubuntu20?id=%e7%99%bb%e5%bd%95%e8%b4%a6%e5%8f%b7)之前，我们先备份一下我们旧的 `PagerMaid` 文件
+在[登录账号](https://xtaolabs.com/#/ubuntu20?id=%e7%99%bb%e5%bd%95%e8%b4%a6%e5%8f%b7)之前，先备份一下旧的 `PagerMaid` 文件
 
-### 备份
+### 备份旧 PagerMaid
 
 在 `PagerMaid` 中输入 `-backup` 指令
 
@@ -406,9 +401,9 @@ sudo apt install libxml2-dev libxslt-dev python-dev gcc g++ make libjpeg8-dev zl
 
 ![image.png](https://s2.loli.net/2022/02/05/BqcEAJeDb96ZNrY.png)
 
-### 关闭
+### 关闭旧机器
 
-接下来，我们就可以关掉旧的 `PagerMaid` 了，不然等下可能会出现问题。
+接下来，就可以关掉旧的 `PagerMaid` 了，不然等下可能会出现问题。
 \
 记得输入以下指令确保之后不会误启动
 
@@ -429,9 +424,9 @@ sudo systemctl disable pagermaid
 
 ### 恢复备份
 
-现在，我们可以恢复旧 `PagerMaid` 的备份了。
+现在就可以恢复旧 `PagerMaid` 的备份了。
 
-如果你的 Log 频道有上传备份文件，那你就可以对着备份文件进行 `-recovery` 指令，
+如果你的 Log 频道有上传备份文件，那你就可以对着备份文件回复 `-recovery` 指令，
 
 否则，请自行将备份路径的文件上传到新的机器的*相同路径上*
 \
